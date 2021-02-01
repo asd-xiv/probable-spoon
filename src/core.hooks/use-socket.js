@@ -51,7 +51,7 @@ export const reducer = (state = initialState, { type, payload }) => {
  * WebSocket connection hook. Persistent in Redux store to allow only one
  * connection per user.
  *
- * @return {[data, methods]}
+ * @returns {[data, methods]}
  */
 export const useSocket = () => {
   const dispatch = useDispatch()

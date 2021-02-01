@@ -7,9 +7,7 @@ import {
   useRef,
   memo as reactMemo,
 } from "react"
-import { map, get, isEmpty } from "@asd14/m"
-import { pick, keys } from "ramda"
-import isDeepEqual from "fast-deep-equal"
+import { pick, keys, map, get, isEmpty, isDeepEqual } from "@asd14/m"
 
 const debugDiff = (prev, next) => {
   debug({

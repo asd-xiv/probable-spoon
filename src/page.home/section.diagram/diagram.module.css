@@ -1,0 +1,20 @@
+:global(.bi.bi-diagram) {
+  border: none;
+  background-color: var(--color-bg);
+  box-shadow: none;
+}
+
+:global(.bi.bi-diagram .bi-link-canvas-layer .bi-diagram-link .bi-link-path) {
+  stroke: var(--color-blue);
+  stroke-width: 3px;
+}
+
+:global(.bi.bi-diagram .bi-link-canvas-layer .bi-diagram-link .bi-diagram-link-label) {
+  color: var(--color-fg);
+  border: 2px solid var(--color-blue);
+  background-color: var(--color-bg);
+}
+
+:global(.bi.bi-diagram .bi-link-canvas-layer .bi-diagram-link:hover .bi-link-path) {
+  stroke: var(--color-blue2);
+}

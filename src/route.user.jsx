@@ -21,7 +21,7 @@ import { UserLayout } from "./layout.user/user"
  * @param {React.Node} component    What to render
  * @param {boolean}    hasLayout    Will not use dedicated User layout
  *
- * @return {ReactRouter.Route}
+ * @returns {ReactRouter.Route}
  **/
 const UserRoute = ({
   path,

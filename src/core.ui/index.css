@@ -1,11 +1,13 @@
 @import "sanitize.css";
+@import "beautiful-react-diagrams/styles.css";
+@import "./variables.css";
 @import "./fonts.css";
 
 body {
-  color: var(--color-black);
-  background-color: var(--color-white);
+  color: var(--color-fg);
+  background-color: var(--color-black);
 
-  font-family: var(--font-family);
+  font-family: var(--font-family-mono);
   font-size: var(--font-size);
   line-height: var(--line-height);
 }

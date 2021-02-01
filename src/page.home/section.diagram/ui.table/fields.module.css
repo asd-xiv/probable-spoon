@@ -1,0 +1,29 @@
+.field {
+  position: relative;
+
+  display: grid;
+  gap: 0 10px;
+  grid-template-columns: 1fr auto;
+}
+
+.field-name {
+  color: var(--color-fg);
+}
+
+.field-type {
+  text-align: right;
+
+  color: var(--color-aqua);
+}
+
+.field-output {
+  position: absolute;
+  right: calc(-1.5 * var(--distancer));
+
+  width: var(--distancer);
+  height: var(--distancer);
+
+  border: 2px solid var(--color-gray);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}

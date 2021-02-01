@@ -14,8 +14,8 @@ import {
   reduce,
   pipe,
   filterWith,
+  append,
 } from "@asd14/m"
-import { append } from "ramda"
 
 export const STORE_KEY = "GLOBAL.COMMANDS"
 
@@ -77,8 +77,8 @@ export const useCommands = () => {
  * //   {layer: "base.work", name: "profile", ...}
  * // ]
  *
- * @param {String}   layer    Layer name
- * @param {Object[]} commands Array of objects containing commands for each layer
+ * @param {string}   layer    Layer name
+ * @param {object[]} commands Array of objects containing commands for each layer
  *
  * @returns {CommandsState} Array with commands
  */

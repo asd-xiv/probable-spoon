@@ -1,7 +1,17 @@
 const debug = require("debug")("asd14:KeyboardLib")
 
-import { has, is, isEmpty } from "@asd14/m"
-import { concat, split, path, pipe, when, map, reduce } from "ramda"
+import {
+  concat,
+  split,
+  read,
+  pipe,
+  when,
+  map,
+  reduce,
+  has,
+  is,
+  isEmpty,
+} from "@asd14/m"
 
 /**
  * Similar to programmable mechanical keyboards, keys can do different things
@@ -11,19 +21,19 @@ import { concat, split, path, pipe, when, map, reduce } from "ramda"
 /**
  * Shortcut internals
  *
- * @typedef {Object} KeyboardShortcut
+ * @typedef {object} KeyboardShortcut
  *
- * @property {String}   name
- * @property {String}   description
- * @property {Number}   weight
- * @property {Object[]} params
+ * @property {string}   name
+ * @property {string}   description
+ * @property {number}   weight
+ * @property {object[]} params
  * @property {Function} onFinish
  */
 
 /**
  * Layered Keyboard state
  *
- * @property {String}             selectedLayer
+ * @property {string}             selectedLayer
  * @property {KeyboardShortcut[]} shortcuts
  */
 const state = {
@@ -34,12 +44,15 @@ const state = {
 /**
  * Find shortcut by key and layer. If does not exist, look also in "base" layer
  *
- * @returns {Object}
+ * @param root0
+ * @param root0.layer
+ * @param root0.key
+ * @returns {object}
  */
 const findShortcut = ({ layer, key }) => shortcuts => {
-  const shortcut = path([layer, key])(shortcuts)
+  const shortcut = read([layer, key])(shortcuts)
 
-  return isEmpty(shortcut) ? path(["base", key])(shortcuts) : shortcut
+  return isEmpty(shortcut) ? read(["base", key])(shortcuts) : shortcut
 }
 
 /**
@@ -58,7 +71,7 @@ const findShortcut = ({ layer, key }) => shortcuts => {
  *   }
  * })
  *
- * @return {KeyboardShortcut[]}
+ * @returns {KeyboardShortcut[]}
  */
 const expandKeysByComma = pipe(
   Object.entries,
@@ -100,7 +113,7 @@ document.addEventListener(
 /**
  * Switch to different layer
  *
- * @param {String} source Layer name
+ * @param {string} source Layer name
  */
 export const setLayer = source => {
   state.selectedLayer = source
@@ -108,6 +121,9 @@ export const setLayer = source => {
 
 /**
  * Remove shortcuts and layer
+ *
+ * @param root0
+ * @param root0.layer
  */
 export const removeShortcuts = ({ layer }) => {
   state.shortcuts = {
@@ -118,6 +134,10 @@ export const removeShortcuts = ({ layer }) => {
 
 /**
  * Add/update layer shortcuts
+ *
+ * @param root0
+ * @param root0.layer
+ * @param root0.shortcuts
  */
 export const addShortcuts = ({ layer, shortcuts }) => {
   if (isEmpty(shortcuts)) {

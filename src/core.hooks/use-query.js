@@ -1,28 +1,25 @@
 const debug = require("debug")("asd14:useQuery")
 
-import { useMemo, useHistory, useLocation } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { stringify, parse } from "qs"
 
-import { useCallback } from "./use-deep"
+import { useMemo, useCallback } from "./use-deep"
 
 /**
  * Get/Set query params via `qs` lib
  *
- * @returns {Object}
+ * @returns {object}
  */
 export const useQuery = () => {
   const { search } = useLocation()
   const history = useHistory()
 
-  const queryParams = useMemo(
-    () => parse(search.replace("?", ""), { allowDots: true }),
-    [search]
-  )
+  const queryParams = useMemo(() => parse(search.replace("?", "")), [search])
 
   const setQueryParams = useCallback(
     source => {
       history.push({
-        search: stringify({ ...queryParams, ...source }, { allowDots: true }),
+        search: stringify({ ...queryParams, ...source }),
       })
     },
     [history, queryParams]
