@@ -1,16 +1,18 @@
-const debug = require("debug")("mutant:FieldsUI")
+const debug = require("debug")("probable-spoon:FieldsUI")
 
 import React from "react"
 import PropTypes from "prop-types"
 import { reduce, pipe, map, findWith, is } from "@asd14/m"
+
+import { deepReactMemo } from "core.hooks/use-deep"
 
 import css from "./fields.module.css"
 
 const toArray = pipe(
   Object.entries,
   reduce(
-    (acc, [key, value]) => [
-      ...acc,
+    (accumulator, [key, value]) => [
+      ...accumulator,
       {
         id: key,
         ...(typeof value === "string" ? { type: value } : value),
@@ -25,17 +27,16 @@ const FieldsUI = ({ tableId, items, outputs, level = 0 }) => {
     <div className={css.fields}>
       {map(item => {
         const fieldOutput = findWith(
-          { key: `${tableId}-output-${item.id}` },
-          null,
+          { id: `${tableId}-output-${item.id}` },
+          undefined,
           outputs
         )
 
+        const isNonPrimitive = item.type === "array" || item.type === "object"
+
         return (
           <React.Fragment key={item.id}>
-            {level === 0 &&
-            (item.type === "array" || item.type === "object") ? (
-              <br />
-            ) : null}
+            {level === 0 && isNonPrimitive ? <br /> : null}
 
             <div className={css.field}>
               <div className={css["field-name"]}>{`${level === 0 ? "" : "| "}${
@@ -49,11 +50,7 @@ const FieldsUI = ({ tableId, items, outputs, level = 0 }) => {
                   : item.type}
               </div>
 
-              {is(fieldOutput)
-                ? React.cloneElement(fieldOutput, {
-                    className: css["field-output"],
-                  })
-                : null}
+              {is(fieldOutput) ? <div className={css["field-output"]} /> : null}
             </div>
 
             {item.type === "array" || item.type === "object" ? (
@@ -82,7 +79,7 @@ FieldsUI.propTypes = {
   }),
   outputs: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     })
   ),
   level: PropTypes.number,
@@ -94,4 +91,6 @@ FieldsUI.defaultProps = {
   outputs: [],
 }
 
-export { FieldsUI }
+const memo = deepReactMemo(FieldsUI)
+
+export { memo as FieldsUI }

@@ -22,6 +22,8 @@
   // App specific rules
   "rules": {
     "new-cap": "off",
+    "json/colon-expected": "error",
+    "unicorn/filename-case": "off",
   },
 
   "settings": {

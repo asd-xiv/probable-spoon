@@ -1,25 +1,10 @@
 :root {
   /* general */
   --opacity-disabled: 0.6;
-  --distancer: calc(14px * 1.2);
-  --radius: 3px;
-  --line-height: 1.2;
-  --box-shadow: 5px 5px 0 var(--color-fg4);
-
-  /* control */
-  --color-primary: var(--color-blue);
-  --color-secondary: var(--color-blue);
-  --color-bad: var(--color-red);
-  --color-good: var(--color-green);
 
   /* fonts */
   --font-family: helvetica, sans-serif;
   --font-family-mono: "Fira Code", "Consolas", "Courier New", monospace;
-  --font-size-small: 12px;
-  --font-size: 14px;
-  --font-size-medium: 16px;
-  --font-size-big: 24px;
-  --font-size-huge: 40px;
 
   /* depth */
   --z-index-highest: 300;
@@ -30,7 +15,7 @@
   --z-index-lower: -200;
 }
 
-.gruvbox-dark {
+.theme-gruvbox-dark {
   --color-fg: #EBDBB2;
   --color-fg4: #A89984;
   --color-bg: #282828;
@@ -50,7 +35,7 @@
   --color-orange2: #FE8019;
 }
 
-.gruvbox-light {
+.theme-gruvbox-light {
   --color-fg: #3C3836;
   --color-fg4: #7C6F64;
   --color-bg: #FBF1C7;
@@ -68,6 +53,16 @@
   --color-aqua: #689D6A;
   --color-orange: #D65D0E;
   --color-orange2: #AF3A03;
+}
+
+.size-normal {
+  --radius: 3px;
+  --unit: 16px;
+  --radius: 3px;
+  --font-size: 14px;
+  --distancer: 16px;
+  --line-height: 16px;
+  --box-shadow: 5px 5px 0 var(--color-fg4);
 }
 
 /* Desktop first */

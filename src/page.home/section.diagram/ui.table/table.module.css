@@ -3,9 +3,14 @@
 }
 
 .table {
-  position: relative;
+  position: absolute;
 
-  padding: var(--distancer);
+  display: inline-block;
+
+  padding: calc(var(--distancer) - 2px);
+
+  cursor: move;
+  user-select: none;
 
   border: 2px solid var(--color-gray);
   border-radius: var(--radius);
@@ -21,8 +26,6 @@
 .input--main,
 .output--main {
   position: absolute;
-
-  display: none;
 
   width: var(--distancer);
   height: var(--distancer);

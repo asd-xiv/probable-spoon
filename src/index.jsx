@@ -1,8 +1,8 @@
-const debug = require("debug")("asd14:Index")
+const debug = require("debug")("probable-spoon:Index")
 
 import React from "react"
 import { render } from "react-dom"
-import { set as setHTTPProps } from "@asd14/fetch-browser"
+import { set as setHTTPProperties } from "@asd14/fetch-browser"
 import { stringify } from "qs"
 import { Provider } from "react-redux"
 
@@ -11,16 +11,16 @@ import { AppRouter } from "./index.router"
 
 import "core.ui/index.css"
 
-setHTTPProps({
-  // Prefix request urls with API_URL
+setHTTPProperties({
+  // Prefix relative path
   baseURL: process.env.API_URL,
 
   /**
    * Transform query object into string with `qs`
    *
-   * @param {Object} source Request query object
+   * @param   {Object} source Request query object
    *
-   * @returns {string} String appended to the URL
+   * @returns {string}        String appended to the URL
    */
   queryStringifyFn: source =>
     stringify(source, {
@@ -35,10 +35,10 @@ render(
   <Provider store={store}>
     <AppRouter />
   </Provider>,
-  document.getElementById("react-root")
+  document.querySelector("#react-root")
 )
 
 // activate debug logging when in development
 if (process.env.NODE_ENV !== "production") {
-  window.localStorage.setItem("debug", "mutant:*", "ReduxList:*")
+  localStorage.setItem("debug", "probable-spoon:*,JustAList:*")
 }

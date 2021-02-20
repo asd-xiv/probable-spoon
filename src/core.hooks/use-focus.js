@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:useFocus")
+const debug = require("debug")("probable-spoon:useFocus")
 
 import { useSelector, useDispatch } from "react-redux"
 import { is } from "@asd14/m"
@@ -10,10 +10,7 @@ export const BASE_LAYER = "base"
 
 export const STORE_KEY = "GLOBAL.FOCUS"
 
-export const reducer = (
-  state = { id: null, layer: BASE_LAYER, status: "read" },
-  { type, payload = {} }
-) => {
+export const reducer = (state, { type, payload = {} }) => {
   switch (type) {
     case `${STORE_KEY}.SET`:
       return {
@@ -23,18 +20,18 @@ export const reducer = (
       }
 
     default:
-      return state
+      return { id: undefined, layer: BASE_LAYER, status: "read" }
   }
 }
 
 /**
  * Pinpoint user's location on the board
  *
- * @param {string} id     Resource ID (Card, Metric, Feedback etc)
- * @param {string} layer  Keyboard layer/app region that has keyboard control
- * @param {string} status Action being performed ("view" or "edit")
+ * @param   {string}             id     Resource ID (Card, Metric, Feedback etc)
+ * @param   {string}             layer  Keyboard layer/app region that has keyboard control
+ * @param   {string}             status Action being performed ("view" or "edit")
  *
- * @returns {[Object, Function]} Getter and setter
+ * @returns {[Object, Function]}        Getter and setter
  */
 export const useFocus = () => {
   const dispatch = useDispatch()

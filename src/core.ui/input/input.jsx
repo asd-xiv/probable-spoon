@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:UIInput")
+const debug = require("debug")("probable-spoon:UIInput")
 
 import React, { forwardRef } from "react"
 import PropTypes from "prop-types"
@@ -33,7 +33,7 @@ const UIInput = forwardRef(
       onBlur,
       onKeyDown,
     },
-    ref
+    reference
   ) => {
     const handleKeyDown = event => {
       if (event.key === "Tab") {
@@ -71,7 +71,7 @@ const UIInput = forwardRef(
               <span className={css.shadow}>{shadow}</span>
             ) : null}
             <input
-              ref={ref}
+              ref={reference}
               id={is(name) ? name : cuid()}
               placeholder={placeholder}
               type={type}
@@ -135,25 +135,25 @@ UIInput.propTypes = {
 }
 
 UIInput.defaultProps = {
-  className: null,
-  placeholder: null,
-  label: null,
+  className: undefined,
+  placeholder: undefined,
+  label: undefined,
   type: "text",
-  size: null,
+  size: undefined,
   name: "",
   shadow: "",
   tabIndex: undefined,
-  error: null,
+  error: undefined,
   isDisabled: false,
   isChecked: false,
   isLoading: false,
   hasAutoFocus: false,
   hasAutocomplete: true,
   hasErrorMessage: true,
-  onSubmit: null,
-  onFocus: null,
-  onBlur: null,
-  onKeyDown: null,
+  onSubmit: undefined,
+  onFocus: undefined,
+  onBlur: undefined,
+  onKeyDown: undefined,
 }
 
 const memo = React.memo(UIInput)

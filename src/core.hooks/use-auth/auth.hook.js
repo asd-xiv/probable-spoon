@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:AuthHook")
+const debug = require("debug")("probable-spoon:AuthHook")
 
 import { useSelector, useDispatch } from "react-redux"
 import { get, is } from "@asd14/m"

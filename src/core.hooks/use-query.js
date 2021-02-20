@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:useQuery")
+const debug = require("debug")("probable-spoon:useQuery")
 
 import { useHistory, useLocation } from "react-router-dom"
 import { stringify, parse } from "qs"
@@ -8,22 +8,24 @@ import { useMemo, useCallback } from "./use-deep"
 /**
  * Get/Set query params via `qs` lib
  *
- * @returns {object}
+ * @returns {Object}
  */
 export const useQuery = () => {
   const { search } = useLocation()
   const history = useHistory()
 
-  const queryParams = useMemo(() => parse(search.replace("?", "")), [search])
+  const queryParameters = useMemo(() => parse(search.replace("?", "")), [
+    search,
+  ])
 
-  const setQueryParams = useCallback(
+  const setQueryParameters = useCallback(
     source => {
       history.push({
-        search: stringify({ ...queryParams, ...source }),
+        search: stringify({ ...queryParameters, ...source }),
       })
     },
-    [history, queryParams]
+    [history, queryParameters]
   )
 
-  return [queryParams, setQueryParams]
+  return [queryParameters, setQueryParameters]
 }

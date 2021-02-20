@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:LoginPage")
+const debug = require("debug")("probable-spoon:LoginPage")
 
 import React from "react"
 import { isEmpty } from "@asd14/m"

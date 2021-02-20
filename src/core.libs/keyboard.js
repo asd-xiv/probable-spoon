@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:KeyboardLib")
+const debug = require("debug")("probable-spoon:KeyboardLib")
 
 import {
   concat,
@@ -21,7 +21,7 @@ import {
 /**
  * Shortcut internals
  *
- * @typedef {object} KeyboardShortcut
+ * @typedef  {object}   KeyboardShortcut
  *
  * @property {string}   name
  * @property {string}   description
@@ -44,10 +44,11 @@ const state = {
 /**
  * Find shortcut by key and layer. If does not exist, look also in "base" layer
  *
- * @param root0
- * @param root0.layer
- * @param root0.key
- * @returns {object}
+ * @param   {Object} root0
+ * @param   {string} root0.layer
+ * @param   {string} root0.key
+ *
+ * @returns {Object}
  */
 const findShortcut = ({ layer, key }) => shortcuts => {
   const shortcut = read([layer, key])(shortcuts)
@@ -60,27 +61,27 @@ const findShortcut = ({ layer, key }) => shortcuts => {
  * value as key. Split the key and assing the handler to each key individualy.
  *
  * @example
- * addShortcuts({
- *   shortcuts: {
- *     // run the same function when pressing either "a" or "b" key
- *     "a,b": () => {}
+ *                                addShortcuts({
+ *                                shortcuts: {
+ *                                // run the same function when pressing either "a" or "b" key
+ *                                "a,b": () => {}
  *
- *     // after expand
- *     "a": () => {},
- *     "b": () => {}
- *   }
- * })
+ *                                // after expand
+ *                                "a": () => {},
+ *                                "b": () => {}
+ *                                }
+ *                                })
  *
  * @returns {KeyboardShortcut[]}
  */
 const expandKeysByComma = pipe(
   Object.entries,
   reduce(
-    (acc, [key, value]) =>
+    (accumulator, [key, value]) =>
       pipe(
         split(","),
         map(source => [source, value]),
-        concat(acc)
+        concat(accumulator)
       )(key),
     []
   ),
@@ -103,7 +104,7 @@ document.addEventListener(
           layer: state.selectedLayer,
           key: event.key,
         }),
-        when(is, handler => handler.call(null, event))
+        when(is, handler => handler.call(undefined, event))
       )(state.shortcuts)
     }
   },
@@ -113,7 +114,9 @@ document.addEventListener(
 /**
  * Switch to different layer
  *
- * @param {string} source Layer name
+ * @param   {string}    source Layer name
+ *
+ * @returns {undefined}
  */
 export const setLayer = source => {
   state.selectedLayer = source
@@ -122,8 +125,10 @@ export const setLayer = source => {
 /**
  * Remove shortcuts and layer
  *
- * @param root0
- * @param root0.layer
+ * @param   {Object}    props
+ * @param   {string}    props.layer
+ *
+ * @returns {undefined}
  */
 export const removeShortcuts = ({ layer }) => {
   state.shortcuts = {
@@ -135,9 +140,11 @@ export const removeShortcuts = ({ layer }) => {
 /**
  * Add/update layer shortcuts
  *
- * @param root0
- * @param root0.layer
- * @param root0.shortcuts
+ * @param   {Object}    props
+ * @param   {string}    props.layer
+ * @param   {string[]}  props.shortcuts
+ *
+ * @returns {undefined}
  */
 export const addShortcuts = ({ layer, shortcuts }) => {
   if (isEmpty(shortcuts)) {

@@ -1,12 +1,21 @@
-const debug = require("debug")("asd14:BaseLayout")
+const debug = require("debug")("probable-spoon:BaseLayout")
 
 import React from "react"
 import PropTypes from "prop-types"
+import cx from "classnames"
+
+import { useTheme } from "core.hooks/use-theme"
 
 import css from "./base.module.css"
 
 const BaseLayout = ({ children }) => {
-  return <div className={css["base-layout"]}>{children}</div>
+  const [{ themeClass, sizeClass }] = useTheme()
+
+  return (
+    <div className={cx(css["base-layout"], themeClass, sizeClass)}>
+      {children}
+    </div>
+  )
 }
 
 BaseLayout.propTypes = {

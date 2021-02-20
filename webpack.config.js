@@ -5,6 +5,8 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 const Dotenv = require("dotenv-webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
 
 const IS_PROD = process.env.NODE_ENV === "production"
 
@@ -14,7 +16,7 @@ const config = {
   output: {
     publicPath: "/",
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash].js",
+    filename: "js/[name].[contenthash].js",
   },
 
   devtool: IS_PROD ? false : "inline-source-map",
@@ -58,7 +60,7 @@ const config = {
         ],
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /\.(jpg|gif|png)$/,
         use: {
           loader: "url-loader",
         },
@@ -90,14 +92,29 @@ const config = {
     ...(IS_PROD ? [] : [new ReactRefreshWebpackPlugin()]),
 
     new HtmlWebPackPlugin({
-      filename: "index.html",
-      template: "./src/index.html",
+      favicon: "public/spoon.png",
+      template: "public/index.html",
     }),
 
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash].css",
+    }),
 
     new Dotenv({
       path: "./.env",
+    }),
+
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "public/robots.txt",
+          to: "robots.txt",
+        },
+      ],
+    }),
+
+    new MonacoWebpackPlugin({
+      languages: ["javascript", "json"],
     }),
   ],
 
@@ -125,7 +142,7 @@ const config = {
   },
 }
 
-module.exports = (env, argv) => {
+module.exports = (environment, argv) => {
   if (argv.hot) {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = "[name].[fullhash].js"

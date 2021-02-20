@@ -1,6 +1,19 @@
+.diagram-grid {
+  position: relative;
+
+  height: 100%;
+
+  background-color: "#269";
+  background-image:
+    linear-gradient(var(--color-bg1) 2px, transparent 2px),
+    linear-gradient(90deg, var(--color-bg1) 2px, transparent 2px),
+    linear-gradient(var(--color-bg1) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-bg1) 1px, transparent 1px);
+}
+
 :global(.bi.bi-diagram) {
   border: none;
-  background-color: var(--color-bg);
+  background-color: transparent;
   box-shadow: none;
 }
 

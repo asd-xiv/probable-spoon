@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:useList")
+const debug = require("debug")("probable-spoon:useList")
 
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 /**
  * Redux list hook
  *
- * @param {Object} list        Redux List object
- * @param {Object} socketProps WebSocket configuration
+ * @param   {Object} list        Redux List object
+ * @param   {Object} socketProps WebSocket configuration
  *
  * @returns {Object}
  */

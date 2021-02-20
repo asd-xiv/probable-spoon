@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:useSocket")
+const debug = require("debug")("probable-spoon:useSocket")
 
 import io from "socket.io-client"
 import { useCallback } from "react"

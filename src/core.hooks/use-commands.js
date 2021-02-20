@@ -1,4 +1,4 @@
-const debug = require("debug")("asd14:useCommands")
+const debug = require("debug")("probable-spoon:useCommands")
 
 import { useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux"
@@ -70,17 +70,17 @@ export const useCommands = () => {
 /**
  * Return commands assigned to layer and also parent layers
  *
+ * @param   {string}        layer    Layer name
+ * @param   {Object[]}      commands Array of objects containing commands for each layer
+ *
+ * @returns {CommandsState}          Array with commands
+ *
  * @example
- * byLayer("base.work", [...])
- * // => [
- * //   {layer: "base", name: "login", ...},
- * //   {layer: "base.work", name: "profile", ...}
- * // ]
- *
- * @param {string}   layer    Layer name
- * @param {object[]} commands Array of objects containing commands for each layer
- *
- * @returns {CommandsState} Array with commands
+ *                                   byLayer("base.work", [...])
+ *                                   // => [
+ *                                   //   {layer: "base", name: "login", ...},
+ *                                   //   {layer: "base.work", name: "profile", ...}
+ *                                   // ]
  */
 export const byLayer = (layer, commands) =>
   pipe(
@@ -89,8 +89,8 @@ export const byLayer = (layer, commands) =>
     }),
     sort((a, b) => a.layer.length < b.layer.length),
     reduce(
-      (acc, item) => [
-        ...acc,
+      (accumulator, item) => [
+        ...accumulator,
         ...map(merge({ layer: item.layer }))(item.commands),
       ],
       []

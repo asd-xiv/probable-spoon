@@ -1,6 +1,6 @@
-const debug = require("debug")("mutant:DiagramSection")
+const debug = require("debug")("probable-spoon:DiagramSection")
 
-import React from "react"
+import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 import {
   push,
@@ -13,93 +13,128 @@ import {
   toLower,
   hasKey,
 } from "@asd14/m"
-import { Diagram, createSchema, useSchema } from "beautiful-react-diagrams"
 
-import { startsWithUpperCase } from "core.libs/var"
+import { useMemo } from "core.hooks/use-deep"
+import { useTheme } from "core.hooks/use-theme"
 
 import { TableUI } from "./ui.table/table"
 
-import "./diagram.module.css"
+import css from "./diagram.module.css"
 
-const toNodes = ({ schema, coordinates }) => {
+const startsWithUpperCase = source => /^[A-Z].*/.test(source)
+
+const parseSchema = ({ schema }) => {
   const schemaEntries = Object.entries(schema)
-
   const isSchemaObject = source => hasKey(toLower(source), schema)
+  const isReferencingOtherNode = source =>
+    startsWithUpperCase(source) && isSchemaObject(source)
 
-  const links = reduce(
-    (acc, [key, value]) => {
-      return [
-        ...acc,
-        ...pipe(
-          keys,
-          filter(
-            source => startsWithUpperCase(source) && isSchemaObject(source)
-          ),
-          map(item => ({
-            input: `${toLower(item)}`,
-            output: `${key}-output-${item}`,
-            label: read([item, "verb"], "hasMany", value),
-            readOnly: true,
-          }))
-        )(value),
-      ]
-    },
-    [],
-    schemaEntries
-  )
-
-  const nodes = reduce(
-    (acc, [key, value]) => {
-      debug({ key, value })
-
-      return [
-        ...acc,
-        {
-          id: key,
-          content: key,
-          render: TableUI,
-          inputs: [{ id: `${key}-input-main` }],
-          outputs: pipe(
-            keys,
-            filter(
-              source => startsWithUpperCase(source) && isSchemaObject(source)
-            ),
-            map(item => ({ id: `${key}-output-${item}` })),
-            push({ id: `${key}-output-main` })
-          )(value),
-          coordinates: read(key, [100, 100], coordinates),
-          data: {
+  return {
+    nodes: reduce(
+      (accumulator, [key, value]) => {
+        return [
+          ...accumulator,
+          {
+            id: key,
+            inputs: [{ id: `${key}-input-main` }],
+            outputs: pipe(
+              keys,
+              filter(isReferencingOtherNode),
+              map(item => ({ id: `${key}-output-${item}` })),
+              push({ id: `${key}-output-main` })
+            )(value),
             fields: value,
-            hasMainInputLink: true,
-            hasMainOutputLink: false,
           },
-        },
-      ]
-    },
-    [],
-    schemaEntries
-  )
+        ]
+      },
+      [],
+      schemaEntries
+    ),
 
-  debug({ nodes })
-
-  return { nodes, links }
+    links: reduce(
+      (accumulator, [key, value]) => {
+        return [
+          ...accumulator,
+          ...pipe(
+            keys,
+            filter(isReferencingOtherNode),
+            map(item => ({
+              input: `${toLower(item)}`,
+              output: `${key}-output-${item}`,
+              label: read([item, "verb"], "hasMany", value),
+              readOnly: true,
+            }))
+          )(value),
+        ]
+      },
+      [],
+      schemaEntries
+    ),
+  }
 }
 
-const DiagramSection = ({ schema, coordinates }) => {
-  const [beautifullSchema, { onChange }] = useSchema(
-    createSchema(toNodes({ schema, coordinates }))
+const DiagramSection = ({ source, coordinates, onMove }) => {
+  const [{ gridUnitSize }] = useTheme()
+  const gridGroupSize = gridUnitSize * 14
+
+  const { nodes, links } = useMemo(() => {
+    let parsedSource = {}
+
+    try {
+      parsedSource = JSON.parse(source)
+
+      return parseSchema({
+        schema: parsedSource,
+      })
+    } catch (error) {
+      debug({ error })
+
+      return { nodes: [], links: [] }
+    }
+  }, [source])
+
+  const handleCoordinatesUpdate = useCallback(
+    (id, [top, left]) => {
+      const gridTop = Math.floor(top / gridUnitSize) * gridUnitSize
+      const gridLeft = Math.floor(left / gridUnitSize) * gridUnitSize
+
+      onMove(id, [gridTop, gridLeft])
+    },
+    [onMove, gridUnitSize]
   )
 
-  return <Diagram schema={beautifullSchema} onChange={onChange} />
+  return (
+    <div
+      className={css["diagram-grid"]}
+      style={{
+        backgroundSize: `${gridGroupSize}px ${gridGroupSize}px, ${gridGroupSize}px ${gridGroupSize}px, ${gridUnitSize}px ${gridUnitSize}px, ${gridUnitSize}px ${gridUnitSize}px`,
+        backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+      }}>
+      {map(({ id, inputs, outputs, fields }) => {
+        return (
+          <TableUI
+            key={id}
+            id={id}
+            inputs={inputs}
+            outputs={outputs}
+            fields={fields}
+            coordinates={read(id, [100, 100], coordinates)}
+            onMove={handleCoordinatesUpdate}
+          />
+        )
+      }, nodes)}
+    </div>
+  )
 }
 
 DiagramSection.propTypes = {
-  schema: PropTypes.shape(),
+  source: PropTypes.string,
   coordinates: PropTypes.shape(),
+  onMove: PropTypes.func.isRequired,
 }
 
 DiagramSection.defaultProps = {
-  schema: {},
+  source: '{"asd": {}}',
   coordinates: {},
 }
 

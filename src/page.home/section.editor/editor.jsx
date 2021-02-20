@@ -1,25 +1,62 @@
+const debug = require("debug")("probable-spoon:EditorSection")
+
+import React from "react"
+import PropTypes from "prop-types"
+import cx from "classnames"
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main"
 
-window.MonacoEnvironment = {
-  getWorkerUrl: (moduleId, label) => {
-    if (label === "json") {
-      return "./json.worker.js"
-    }
-    if (label === "css") {
-      return "./css.worker.js"
-    }
-    if (label === "html") {
-      return "./html.worker.js"
-    }
-    if (label === "typescript" || label === "javascript") {
-      return "./ts.worker.js"
-    }
+import { useMount } from "core.hooks/use-mount"
+import { UIMonaco } from "core.ui/monaco/monaco"
 
-    return "./editor.worker.js"
-  },
+import fieldTypeSchemas from "./editor.schemas"
+import css from "./editor.module.css"
+
+const EditorSection = ({ id, value, onChange }) => {
+  useMount(() => {
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      schemaValidation: "error",
+      allowComments: true,
+      validate: true,
+      schemas: [
+        {
+          uri: "http://asd14/model.json",
+          fileMatch: [id],
+          schema: {
+            type: "object",
+            additionalProperties: {
+              type: "object",
+              additionalProperties: {
+                $ref: "http://asd14/field",
+              },
+            },
+          },
+        },
+        {
+          uri: "http://asd14/field",
+          schema: {
+            oneOf: fieldTypeSchemas,
+          },
+        },
+      ],
+    })
+  })
+
+  return (
+    <div className={cx(css.editor)}>
+      <UIMonaco id={id} value={value} tabSize={2} onChange={onChange} />
+    </div>
+  )
 }
 
-monaco.editor.create(document.getElementById("container"), {
-  value: ["function x() {", '\tconsole.log("Hello world!");', "}"].join("\n"),
-  language: "javascript",
-})
+EditorSection.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+}
+
+EditorSection.defaultProps = {
+  value: "",
+  onChange: undefined,
+}
+
+export { EditorSection }

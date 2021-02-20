@@ -1,11 +1,11 @@
-const debug = require("debug")("asd14:UIButton")
+const debug = require("debug")("probable-spoon:UIButton")
 
 import * as React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
 import { is } from "@asd14/m"
 
-import css from "./button.css"
+import css from "./button.module.css"
 
 const UIButton = ({
   className,
@@ -26,7 +26,7 @@ const UIButton = ({
         [css["button--is-disabled"]]: isDisabled,
       }
     )}
-    onMouseDown={isDisabled ? null : onClick}>
+    onMouseDown={isDisabled ? undefined : onClick}>
     {is(icon) && <span className={css["button-icon"]}>{icon}</span>}
     {is(label) && <span className={css["button-label"]}>{label}</span>}
   </span>
@@ -44,11 +44,11 @@ UIButton.propTypes = {
 
 UIButton.defaultProps = {
   className: "",
-  icon: null,
+  icon: undefined,
   type: "default",
   size: "default",
   isDisabled: false,
-  onClick: null,
+  onClick: undefined,
 }
 
 const memo = React.memo(UIButton)
