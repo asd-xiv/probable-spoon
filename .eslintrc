@@ -22,7 +22,12 @@
   // App specific rules
   "rules": {
     "new-cap": "off",
+
+    // disable until upstream issues fixed
+    "jsdoc/check-line-alignment": "off",
+
     "json/colon-expected": "error",
+
     "unicorn/filename-case": "off",
   },
 
