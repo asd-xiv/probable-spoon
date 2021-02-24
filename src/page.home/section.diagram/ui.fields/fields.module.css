@@ -23,8 +23,12 @@
   width: var(--distancer);
   height: var(--distancer);
 
-  border: 2px solid var(--color-gray);
+  border: 1px solid var(--color-unfocused);
   border-radius: var(--radius);
 
   background-color: var(--color-bg);
+}
+
+.field--has-table-focus .field-output {
+  border: 1px solid var(--color-focused);
 }

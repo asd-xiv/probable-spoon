@@ -1,21 +1,5 @@
-:root {
-  /* general */
-  --opacity-disabled: 0.6;
-
-  /* fonts */
-  --font-family: helvetica, sans-serif;
-  --font-family-mono: "Fira Code", "Consolas", "Courier New", monospace;
-
-  /* depth */
-  --z-index-highest: 300;
-  --z-index-higher: 200;
-  --z-index-high: 100;
-  --z-index-normal: 1;
-  --z-index-low: -100;
-  --z-index-lower: -200;
-}
-
 .theme-gruvbox-dark {
+  /* theme */
   --color-fg: #EBDBB2;
   --color-fg4: #A89984;
   --color-bg: #282828;
@@ -33,9 +17,14 @@
   --color-aqua: #689D6A;
   --color-orange: #D65D0E;
   --color-orange2: #FE8019;
+
+  /* app */
+  --color-unfocused: var(--color-bg1);
+  --color-focused: var(--color-yellow);
 }
 
 .theme-gruvbox-light {
+  /* theme */
   --color-fg: #3C3836;
   --color-fg4: #7C6F64;
   --color-bg: #FBF1C7;
@@ -53,16 +42,36 @@
   --color-aqua: #689D6A;
   --color-orange: #D65D0E;
   --color-orange2: #AF3A03;
+
+  /* app */
+  --color-unfocused: var(--color-bg1);
+  --color-focused: var(--color-yellow);
 }
 
 .size-normal {
-  --radius: 3px;
   --unit: 16px;
   --radius: 3px;
   --font-size: 14px;
-  --distancer: 16px;
-  --line-height: 16px;
   --box-shadow: 5px 5px 0 var(--color-fg4);
+  --distancer: var(--unit);
+  --line-height: var(--unit);
+}
+
+:root {
+  /* general */
+  --opacity-disabled: 0.6;
+
+  /* fonts */
+  --font-family: helvetica, sans-serif;
+  --font-family-mono: "Fira Code", "Consolas", "Courier New", monospace;
+
+  /* depth */
+  --z-index-highest: 300;
+  --z-index-higher: 200;
+  --z-index-high: 100;
+  --z-index-normal: 1;
+  --z-index-low: -100;
+  --z-index-lower: -200;
 }
 
 /* Desktop first */

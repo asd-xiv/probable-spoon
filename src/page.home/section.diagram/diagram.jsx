@@ -15,6 +15,7 @@ import {
 } from "@asd14/m"
 
 import { useMemo } from "core.hooks/use-deep"
+import { useFocus } from "core.hooks/use-focus"
 import { useTheme } from "core.hooks/use-theme"
 
 import { TableUI } from "./ui.table/table"
@@ -74,6 +75,7 @@ const parseSchema = ({ schema }) => {
 }
 
 const DiagramSection = ({ source, coordinates, onMove }) => {
+  const [{ id: focusId, layer }, setFocus] = useFocus()
   const [{ gridUnitSize }] = useTheme()
   const gridGroupSize = gridUnitSize * 14
 
@@ -119,7 +121,9 @@ const DiagramSection = ({ source, coordinates, onMove }) => {
             outputs={outputs}
             fields={fields}
             coordinates={read(id, [100, 100], coordinates)}
+            hasFocus={layer === "base.diagram" && focusId === id}
             onMove={handleCoordinatesUpdate}
+            onMouseDown={() => setFocus({ id })}
           />
         )
       }, nodes)}

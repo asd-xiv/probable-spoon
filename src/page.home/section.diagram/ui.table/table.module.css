@@ -12,9 +12,13 @@
   cursor: move;
   user-select: none;
 
-  border: 2px solid var(--color-gray);
+  border: 1px solid var(--color-unfocused);
   border-radius: var(--radius);
   background-color: var(--color-bg);
+}
+
+.table--has-focus {
+  border: 1px solid var(--color-focused);
 }
 
 .name {
@@ -32,7 +36,7 @@
 
   cursor: pointer;
 
-  border: 2px solid var(--color-gray);
+  border: 1px solid var(--color-unfocused);
   border-radius: var(--radius);
   background-color: var(--color-bg);
 }
@@ -45,10 +49,15 @@
   right: calc(-1 * var(--distancer) / 2);
 }
 
+.table--has-focus .input--main,
+.table--has-focus .output--main {
+  border: 1px solid var(--color-focused);
+}
+
 .input--active,
 .input--main:hover,
 .output--active,
 .output--main:hover {
-  border: 2px solid var(--color-gray);
+  border: 1px solid var(--color-gray);
   background-color: var(--color-gray);
 }

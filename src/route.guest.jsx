@@ -12,11 +12,11 @@ import { BaseLayout } from "./layout.base/base"
 /**
  * Route without authentication
  *
- * @param   {string}            path         Route path
- * @param   {string}            redirectPath Redirect if JWT present and isExclusive = true
- * @param   {React.Node}        component    What to render if all conditions met
- * @param   {boolean}           isExclusive  Only allow page access if JWT missing
- * @param   {boolean}           hasLayout    Use dedicated Guest layout
+ * @param {string}     path         Route path
+ * @param {string}     redirectPath Redirect if JWT present and isExclusive = true
+ * @param {React.Node} component    What to render if all conditions met
+ * @param {boolean}    isExclusive  Only allow page access if JWT missing
+ * @param {boolean}    hasLayout    Use dedicated Guest layout
  *
  * @returns {ReactRouter.Route}
  **/

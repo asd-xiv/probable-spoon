@@ -2,7 +2,7 @@ const debug = require("debug")("probable-spoon:Index")
 
 import React from "react"
 import { render } from "react-dom"
-import { set as setHTTPProperties } from "@asd14/fetch-browser"
+import { setup as setupHTTPProperties } from "@asd14/fetch-browser"
 import { stringify } from "qs"
 import { Provider } from "react-redux"
 
@@ -11,18 +11,9 @@ import { AppRouter } from "./index.router"
 
 import "core.ui/index.css"
 
-setHTTPProperties({
-  // Prefix relative path
+setupHTTPProperties({
   baseURL: process.env.API_URL,
-
-  /**
-   * Transform query object into string with `qs`
-   *
-   * @param   {Object} source Request query object
-   *
-   * @returns {string}        String appended to the URL
-   */
-  queryStringifyFn: source =>
+  stringifyQueryParams: source =>
     stringify(source, {
       allowDots: true,
       encode: false,

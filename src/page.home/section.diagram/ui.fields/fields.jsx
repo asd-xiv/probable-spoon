@@ -1,6 +1,7 @@
 const debug = require("debug")("probable-spoon:FieldsUI")
 
 import React from "react"
+import cx from "classnames"
 import PropTypes from "prop-types"
 import { reduce, pipe, map, findWith, is } from "@asd14/m"
 
@@ -22,7 +23,7 @@ const toArray = pipe(
   )
 )
 
-const FieldsUI = ({ tableId, items, outputs, level = 0 }) => {
+const FieldsUI = ({ tableId, items, outputs, level = 0, hasTableFocus }) => {
   return (
     <div className={css.fields}>
       {map(item => {
@@ -38,7 +39,10 @@ const FieldsUI = ({ tableId, items, outputs, level = 0 }) => {
           <React.Fragment key={item.id}>
             {level === 0 && isNonPrimitive ? <br /> : null}
 
-            <div className={css.field}>
+            <div
+              className={cx(css.field, {
+                [css["field--has-table-focus"]]: hasTableFocus,
+              })}>
               <div className={css["field-name"]}>{`${level === 0 ? "" : "| "}${
                 item.id
               }`}</div>
@@ -83,12 +87,14 @@ FieldsUI.propTypes = {
     })
   ),
   level: PropTypes.number,
+  hasTableFocus: PropTypes.bool,
 }
 
 FieldsUI.defaultProps = {
   items: {},
   level: 0,
   outputs: [],
+  hasTableFocus: false,
 }
 
 const memo = deepReactMemo(FieldsUI)
