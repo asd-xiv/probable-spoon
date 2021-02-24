@@ -3,12 +3,11 @@ const debug = require("debug")("probable-spoon:TableUI")
 import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
-import { is } from "@asd14/m"
+import { reduce, is } from "@asd14/m"
 
 import { useDrag } from "core.hooks/use-drag"
 import { useTheme } from "core.hooks/use-theme"
-import { useDom } from "core.hooks/use-dom"
-import { deepReactMemo } from "core.hooks/use-deep"
+import { useMemo, deepReactMemo } from "core.hooks/use-deep"
 
 import { FieldsUI } from "../ui.fields/fields"
 import css from "./table.module.css"
@@ -24,23 +23,22 @@ const TableUI = ({
   onMouseDown,
 }) => {
   const [{ gridUnitSize }] = useTheme()
-  const [domElement, reference] = useDom()
+  // const [domElement, setDomElement] = useDom()
   const { onPickup } = useDrag({ id, onDrag: onMove })
 
-  const { width } = is(domElement) ? domElement.getBoundingClientRect() : {}
+  // const maxFieldChars = useMemo(() => {
+  //   reduce(() => {}, { maxLength: 0 }, fields)
+  // }, [fields])
 
   return (
     <div
-      ref={reference}
       className={cx(css.table, {
         [css["table--has-focus"]]: hasFocus,
       })}
       style={{
-        minWidth: is(width)
-          ? Math.ceil(width / gridUnitSize) * gridUnitSize
-          : undefined,
-        left: `${left}px`,
-        top: `${top}px`,
+        width: 17 * gridUnitSize + 1,
+        left: `${left - 1}px`,
+        top: `${top - 1}px`,
       }}
       onMouseDown={event => {
         if (is(onMouseDown)) {

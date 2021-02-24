@@ -1,14 +1,29 @@
 .diagram-grid {
+  --gridGroupSize: calc(14 * var(--unit));
+
   position: relative;
+
+  overflow: hidden;
 
   height: 100%;
 
-  background-color: "#269";
   background-image:
-    linear-gradient(var(--color-bg1) 2px, transparent 2px),
-    linear-gradient(90deg, var(--color-bg1) 2px, transparent 2px),
+    linear-gradient(var(--color-bg2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-bg2) 1px, transparent 1px),
     linear-gradient(var(--color-bg1) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-bg1) 1px, transparent 1px);
+
+  background-position:
+    -1px -1px,
+    -1px -1px,
+    -1px -1px,
+    -1px -1px;
+
+  background-size:
+    var(--gridGroupSize) var(--gridGroupSize),
+    var(--gridGroupSize) var(--gridGroupSize),
+    var(--unit) var(--unit),
+    var(--unit) var(--unit);
 }
 
 :global(.bi.bi-diagram) {

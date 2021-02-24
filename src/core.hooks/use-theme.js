@@ -16,7 +16,7 @@ export const reducer = (state, { type, payload = {} }) => {
       return {
         themeClass: "theme-gruvbox-dark",
         sizeClass: "size-normal",
-        gridUnitSize: 17,
+        gridUnitSize: 16,
       }
   }
 }

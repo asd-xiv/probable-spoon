@@ -77,7 +77,6 @@ const parseSchema = ({ schema }) => {
 const DiagramSection = ({ source, coordinates, onMove }) => {
   const [{ id: focusId, layer }, setFocus] = useFocus()
   const [{ gridUnitSize }] = useTheme()
-  const gridGroupSize = gridUnitSize * 14
 
   const { nodes, links } = useMemo(() => {
     let parsedSource = {}
@@ -106,12 +105,7 @@ const DiagramSection = ({ source, coordinates, onMove }) => {
   )
 
   return (
-    <div
-      className={css["diagram-grid"]}
-      style={{
-        backgroundSize: `${gridGroupSize}px ${gridGroupSize}px, ${gridGroupSize}px ${gridGroupSize}px, ${gridUnitSize}px ${gridUnitSize}px, ${gridUnitSize}px ${gridUnitSize}px`,
-        backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
-      }}>
+    <div className={css["diagram-grid"]}>
       {map(({ id, inputs, outputs, fields }) => {
         return (
           <TableUI
