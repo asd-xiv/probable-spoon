@@ -1,6 +1,6 @@
 [submodule "pkg.@asd14.eslint-config"]
 	path = pkg.@asd14.eslint-config
-	url = https://github.com/asd-xiv/eslint-config.git
+  url = git@github.com:asd-xiv/eslint-config.git
 [submodule "pkg.@asd14.gruvbox-ui"]
 	path = pkg.@asd14.gruvbox-ui
 	url = git@github.com:asd-xiv/gruvbox-ui.git

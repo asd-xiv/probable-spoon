@@ -1,0 +1,13 @@
+{
+  "version": "independent",
+  "npmClient": "npm",
+  "command": {
+    "bootstrap": {
+      "forceLocal": true
+    }
+  },
+  "packages": [
+    "pkg.@asd14.*",
+    "main.*"
+  ]
+}

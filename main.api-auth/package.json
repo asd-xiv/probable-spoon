@@ -1,0 +1,16 @@
+{
+  "name": "probable-spoon-api-auth",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "----UTIL": "",
+    "clean": "rm -rf ./node_modules",
+    "setup": "npm run clean && npm i && npm audit fix",
+    "setup:ci": "npm ci && npm audit fix",
+    "update": "npm-check --update",
+    "update-force": "npm-check --update-all"
+  },
+  "devDependencies": {
+    "@asd14/eslint-config": "^5.28.2"
+  }
+}

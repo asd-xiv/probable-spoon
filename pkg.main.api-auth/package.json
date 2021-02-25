@@ -1,8 +1,0 @@
-{
-    "name": "probable-spoon-api-auth",
-    "private": true,
-    "version": "0.0.1",
-    "devDependencies": {
-      "@asd14/eslint-config": "^5.28.2"
-    }
-}
