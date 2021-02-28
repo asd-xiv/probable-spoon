@@ -2,6 +2,7 @@ const debug = require("debug")("probable-spoon:DiagramSection")
 
 import React, { useCallback } from "react"
 import PropTypes from "prop-types"
+import { useMemo, useFocus, useTheme } from "@asd14/react-hooks"
 import {
   push,
   pipe,
@@ -13,10 +14,6 @@ import {
   toLower,
   hasKey,
 } from "@asd14/m"
-
-import { useMemo } from "core.hooks/use-deep"
-import { useFocus } from "core.hooks/use-focus"
-import { useTheme } from "core.hooks/use-theme"
 
 import { TableUI } from "./ui.table/table"
 
@@ -76,7 +73,7 @@ const parseSchema = ({ schema }) => {
 
 const DiagramSection = ({ source, coordinates, onMove }) => {
   const [{ id: focusId, layer }, setFocus] = useFocus()
-  const [{ gridUnitSize }] = useTheme()
+  const [{ unit: themeUnit }] = useTheme()
 
   const { nodes, links } = useMemo(() => {
     let parsedSource = {}
@@ -96,12 +93,12 @@ const DiagramSection = ({ source, coordinates, onMove }) => {
 
   const handleCoordinatesUpdate = useCallback(
     (id, [top, left]) => {
-      const gridTop = Math.floor(top / gridUnitSize) * gridUnitSize
-      const gridLeft = Math.floor(left / gridUnitSize) * gridUnitSize
+      const gridTop = Math.floor(top / themeUnit) * themeUnit
+      const gridLeft = Math.floor(left / themeUnit) * themeUnit
 
       onMove(id, [gridTop, gridLeft])
     },
-    [onMove, gridUnitSize]
+    [onMove, themeUnit]
   )
 
   return (

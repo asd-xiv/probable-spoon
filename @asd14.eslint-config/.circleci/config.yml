@@ -1,0 +1,85 @@
+version: 2
+
+#
+# YAML variable templates
+#
+job_defaults: &job_defaults
+  working_directory: ~/eslint-config
+  docker:
+    - image: circleci/node:lts
+
+#
+# Run all jobs in sequence
+#
+workflows:
+  version: 2
+  deploy_npm:
+    jobs:
+      - setup:
+          filters:
+            branches:
+              only:
+                - master
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - setup
+      - publish:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - test
+
+#
+# Define atomic jobs
+#
+jobs:
+  setup:
+    <<: *job_defaults
+
+    steps:
+      - checkout
+
+      - run:
+          name: "eslint-config: Install npm packages"
+          command: "npm run setup:ci"
+
+      - save_cache:
+          paths:
+            - node_modules
+            - dist
+          key: eslint-config-{{ .Branch }}-{{ .Revision }}
+
+  test:
+    <<: *job_defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - eslint-config-{{ .Branch }}-{{ .Revision }}
+
+      - run:
+          name: "eslint-config: Run linter"
+          command: "npm run lint"
+
+  publish:
+    <<: *job_defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - eslint-config-{{ .Branch }}-{{ .Revision }}
+
+      - run:
+          name: "eslint-config: Release to npm with semantic-release"
+          command: "npx semantic-release"
+

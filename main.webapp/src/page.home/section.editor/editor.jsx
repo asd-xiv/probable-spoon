@@ -4,8 +4,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main"
+import { useMount } from "@asd14/react-hooks"
 
-import { useMount } from "core.hooks/use-mount"
 import { UIMonaco } from "core.ui/monaco/monaco"
 
 import fieldTypeSchemas from "./editor.schemas"

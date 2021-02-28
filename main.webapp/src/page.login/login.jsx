@@ -1,11 +1,10 @@
 const debug = require("debug")("probable-spoon:LoginPage")
 
 import React from "react"
-import { isEmpty } from "@asd14/m"
 import { useHistory } from "react-router-dom"
+import { isEmpty } from "@asd14/m"
+import { useAuth, useQuery } from "@asd14/react-hooks"
 
-import { useQuery } from "core.hooks/use-query"
-import { useAuth } from "core.hooks/use-auth/auth.hook"
 import { getPath } from "core.libs/routes"
 
 // Entry point from email with one-time-token to be exchanged for a JWT

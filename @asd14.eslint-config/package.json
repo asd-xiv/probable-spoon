@@ -1,0 +1,80 @@
+{
+  "name": "@asd14/eslint-config",
+  "version": "1.0.0",
+  "description": "JavaScript ESLint rules",
+  "homepage": "https://github.com/asd-xiv/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asd-xiv/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asd-xiv/eslint-config/issues"
+  },
+  "author": {
+    "name": "Andrei Dumitrescu",
+    "url": "https://github.com/andreidmt"
+  },
+  "main": "targets/node.js",
+  "scripts": {
+    "----UTIL": "",
+    "clean": "rm -rf ./node_modules",
+    "setup": "npm run clean && npm i && npm audit fix",
+    "setup:ci": "npm ci && npm audit fix",
+    "update": "npm-check --update",
+    "update-force": "npm-check --update-all",
+    "----TEST": "",
+    "lint:js": "eslint --quiet rules/* targets/*",
+    "lint:md": "markdownlint *.md",
+    "lint": "npm run lint:js && npm run lint:md",
+    "----BUILD": "",
+    "prepublishOnly": "npm audit fix && npm run lint"
+  },
+  "keywords": [
+    "config",
+    "eslint",
+    "eslint-config",
+    "eslint-rules",
+    "javascript",
+    "prettier",
+    "react",
+    "node"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^32.2.0",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-no-inferred-method-name": "^2.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^28.0.2",
+    "markdownlint-cli": "^0.26.0",
+    "npm-check": "^5.9.2",
+    "prettier": "^2.2.1",
+    "semantic-release": "^17.4.0",
+    "typescript": "^4.2.2"
+  },
+  "peerDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^32.2.0",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-no-inferred-method-name": "^2.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-unicorn": "^28.0.2",
+    "prettier": "^2.2.1"
+  },
+  "engines": {
+    "node": ">= 12"
+  },
+  "license": "MIT"
+}

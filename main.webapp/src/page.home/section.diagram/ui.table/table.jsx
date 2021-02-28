@@ -3,11 +3,8 @@ const debug = require("debug")("probable-spoon:TableUI")
 import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
-import { reduce, is } from "@asd14/m"
-
-import { useDrag } from "core.hooks/use-drag"
-import { useTheme } from "core.hooks/use-theme"
-import { useMemo, deepReactMemo } from "core.hooks/use-deep"
+import { is } from "@asd14/m"
+import { useDrag, useTheme, deepReactMemo } from "@asd14/react-hooks"
 
 import { FieldsUI } from "../ui.fields/fields"
 import css from "./table.module.css"
@@ -22,7 +19,7 @@ const TableUI = ({
   onMove,
   onMouseDown,
 }) => {
-  const [{ gridUnitSize }] = useTheme()
+  const [{ unit: themeUnit }] = useTheme()
   // const [domElement, setDomElement] = useDom()
   const { onPickup } = useDrag({ id, onDrag: onMove })
 
@@ -36,7 +33,7 @@ const TableUI = ({
         [css["table--has-focus"]]: hasFocus,
       })}
       style={{
-        width: 17 * gridUnitSize + 1,
+        width: 17 * themeUnit + 1,
         left: `${left - 1}px`,
         top: `${top - 1}px`,
       }}

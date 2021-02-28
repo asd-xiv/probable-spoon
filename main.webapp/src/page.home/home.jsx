@@ -2,10 +2,8 @@ const debug = require("debug")("probable-spoon:HomePage")
 
 import React, { useCallback, useEffect } from "react"
 import cx from "classnames"
+import { useList, useQuery, useFocus } from "@asd14/react-hooks"
 
-import { useList } from "core.hooks/use-list"
-import { useQuery } from "core.hooks/use-query"
-import { useFocus } from "core.hooks/use-focus"
 import { ErrorBoundaryUI } from "core.ui/error-boundary/error-boundary"
 
 import { SchemasList } from "./data/list.schemas"

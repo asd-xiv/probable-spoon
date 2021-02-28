@@ -4,9 +4,8 @@ import React, { useRef, useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
 import { is } from "@asd14/m"
+import { useMount } from "@asd14/react-hooks"
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main"
-
-import { useMount } from "core.hooks/use-mount"
 
 import css from "./monaco.module.css"
 

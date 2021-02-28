@@ -4,8 +4,7 @@ import React from "react"
 import cx from "classnames"
 import PropTypes from "prop-types"
 import { reduce, pipe, map, findWith, is } from "@asd14/m"
-
-import { deepReactMemo } from "core.hooks/use-deep"
+import { deepReactMemo } from "@asd14/react-hooks"
 
 import css from "./fields.module.css"
 

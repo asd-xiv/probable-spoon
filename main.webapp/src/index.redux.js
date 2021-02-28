@@ -2,20 +2,22 @@ const debug = require("debug")("probable-spoon:Redux")
 
 import { createStore, combineReducers } from "redux"
 
-import * as stateSocket from "core.hooks/use-socket/socket.reducer"
-import * as stateAuth from "core.hooks/use-auth/auth.reducer"
-import * as useFocus from "core.hooks/use-focus"
-import * as useTheme from "core.hooks/use-theme"
-import * as useCommands from "core.hooks/use-commands"
+import {
+  useSocketRedux,
+  useAuthRedux,
+  useFocusRedux,
+  useThemeRedux,
+  useCommandsRedux,
+} from "@asd14/react-hooks"
 
 import { SchemasList } from "./page.home/data/list.schemas"
 
 const appReducer = combineReducers({
-  [stateSocket.STORE_KEY]: stateSocket.reducer,
-  [stateAuth.STORE_KEY]: stateAuth.reducer,
-  [useFocus.STORE_KEY]: useFocus.reducer,
-  [useTheme.STORE_KEY]: useTheme.reducer,
-  [useCommands.STORE_KEY]: useCommands.reducer,
+  [useSocketRedux.STORE_KEY]: useSocketRedux.reducer,
+  [useAuthRedux.STORE_KEY]: useAuthRedux.reducer,
+  [useFocusRedux.STORE_KEY]: useFocusRedux.reducer,
+  [useThemeRedux.STORE_KEY]: useThemeRedux.reducer,
+  [useCommandsRedux.STORE_KEY]: useCommandsRedux.reducer,
 
   [SchemasList.name]: SchemasList.reducer,
 })

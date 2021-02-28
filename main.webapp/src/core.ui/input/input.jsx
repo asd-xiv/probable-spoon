@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prevent-abbreviations */
+
 const debug = require("debug")("probable-spoon:UIInput")
 
 import React, { forwardRef } from "react"
@@ -8,7 +10,7 @@ import { isEmpty, is } from "@asd14/m"
 
 import css from "./input.css"
 
-const UIInput = forwardRef(
+const UISource = forwardRef(
   (
     {
       className,
@@ -110,7 +112,7 @@ const UIInput = forwardRef(
   }
 )
 
-UIInput.propTypes = {
+UISource.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -134,7 +136,7 @@ UIInput.propTypes = {
   onKeyDown: PropTypes.func,
 }
 
-UIInput.defaultProps = {
+UISource.defaultProps = {
   className: undefined,
   placeholder: undefined,
   label: undefined,
@@ -156,6 +158,6 @@ UIInput.defaultProps = {
   onKeyDown: undefined,
 }
 
-const memo = React.memo(UIInput)
+const memo = React.memo(UISource)
 
 export { memo as UIInput }

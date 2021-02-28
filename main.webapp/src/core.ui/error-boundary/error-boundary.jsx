@@ -2,10 +2,7 @@ const debug = require("debug")("probable-spoon:ErrorBoundaryUI")
 
 import * as React from "react"
 import PropTypes from "prop-types"
-import * as Sentry from "@sentry/browser"
 import { is } from "@asd14/m"
-
-import { UIButton } from "../button/button"
 
 import css from "./error-boundary.module.css"
 
@@ -16,7 +13,7 @@ class ErrorBoundaryUI extends React.Component {
     this.state = {
       error: undefined,
       errorInfo: undefined,
-      eventId: undefined,
+      // eventId: undefined,
     }
   }
 
@@ -26,17 +23,17 @@ class ErrorBoundaryUI extends React.Component {
       errorInfo,
     })
 
-    Sentry.withScope(scope => {
-      scope.setExtras(errorInfo)
-      const eventId = Sentry.captureException(error)
+    // Sentry.withScope(scope => {
+    //   scope.setExtras(errorInfo)
+    //   const eventId = Sentry.captureException(error)
 
-      this.setState({ eventId })
-    })
+    //   this.setState({ eventId })
+    // })
   }
 
   render() {
     const { children, message } = this.props
-    const { error, errorInfo, eventId } = this.state
+    const { error, errorInfo } = this.state
 
     return is(errorInfo) ? (
       <div className={css.error}>
@@ -44,11 +41,13 @@ class ErrorBoundaryUI extends React.Component {
 
         <p>Error report has been sent. We&apos;re on it!</p>
 
-        <UIButton
-          size="small"
-          label="Report feedback"
-          onClick={() => Sentry.showReportDialog({ eventId })}
-        />
+        {
+          // <UIButton
+          //   size="small"
+          //   label="Report feedback"
+          //   onClick={() => Sentry.showReportDialog({ eventId })}
+          // />
+        }
 
         <details style={{ display: "none", whiteSpace: "pre-wrap" }}>
           {is(error) ? error.toString() : message}
