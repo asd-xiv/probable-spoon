@@ -1,3 +1,0 @@
-{
-  extends: ["./targets/node.js"]
-}
