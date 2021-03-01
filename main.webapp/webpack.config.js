@@ -136,9 +136,9 @@ const config = {
       "react-router-dom": path.resolve("./node_modules/react-router-dom"),
 
       // Application shortcuts
-      "core.ui": path.resolve(__dirname, "src/core.ui/"),
-      "core.libs": path.resolve(__dirname, "src/core.libs/"),
-      "layout.base": path.resolve(__dirname, "src/layout.base/"),
+      "core.ui": path.resolve("./src/core.ui/"),
+      "core.libs": path.resolve("./src/core.libs/"),
+      "layout.base": path.resolve("./src/layout.base/"),
     },
   },
 

@@ -42,9 +42,8 @@
     "@asd14/m": "^5.1.0",
     "@asd14/react-hooks": "^1.0.0",
     "@asd14/state-list": "^7.8.1",
-    "@babel/runtime-corejs3": "^7.13.8",
+    "@babel/runtime": "^7.13.8",
     "classnames": "^2.2.6",
-    "core-js": "^3.9.1",
     "cuid": "^2.1.8",
     "debug": "^4.3.1",
     "localforage": "^1.9.0",
@@ -60,7 +59,7 @@
     "socket.io-client": "^3.1.1"
   },
   "devDependencies": {
-    "@asd14/eslint-config": "^5.29.0",
+    "@asd14/eslint-config": "^5.29.1",
     "@babel/cli": "^7.12.17",
     "@babel/core": "^7.13.8",
     "@babel/plugin-transform-react-constant-elements": "^7.12.13",
@@ -74,7 +73,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-jsx-remove-data-test-id": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.0.2",
+    "css-loader": "^5.1.1",
     "dotenv-webpack": "^6.0.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.0.0",
