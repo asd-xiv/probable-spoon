@@ -7,3 +7,6 @@
 [submodule "@asd14.eslint-config"]
 	path = @asd14.eslint-config
 	url = git@github.com:asd-xiv/eslint-config.git
+[submodule "main.webapp"]
+	path = main.webapp
+	url = git@github.com:asd-xiv/probable-spoon-webapp.git
