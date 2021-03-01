@@ -1,6 +1,14 @@
 {
   "name": "probable-spoon",
   "private": true,
+  "scripts": {
+    "setup": "lerna run --parallel setup && lerna bootstrap",
+    "build:deps": "npm run setup && lerna run --scope '@asd14/*' --parallel build",
+    "build:deps:watch": "lerna bootstrap && lerna run --scope '@asd14/*' --parallel build:watch",
+    "build:webapp": "npm run build:deps && lerna run --scope 'probable-spoon-webapp' build",
+    "build:api-auth": "npm run build:deps && lerna run --scope 'probable-spoon-api-auth' build",
+    "start:webapp": "cd ./main.webapp && npm run start"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }
