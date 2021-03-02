@@ -1,5 +1,20 @@
 {
-  "name": "probable-spoon",
+  "name": "@asd14/probable-spoon",
+  "version": "0.0.1",
+  "description": "An 8bit diagramming tool. Draw how data flows from one transition to another.",
+  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/asd-xiv/probable-spoon#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asd-xiv/probable-spoon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asd-xiv/probable-spoon/issues"
+  },
+  "author": {
+    "name": "Andrei Dumitrescu",
+    "url": "https://github.com/andreidmt"
+  },
   "private": true,
   "scripts": {
     "setup": "lerna run --parallel setup && lerna bootstrap",
