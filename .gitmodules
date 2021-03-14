@@ -10,3 +10,6 @@
 [submodule "main.webapp"]
 	path = main.webapp
 	url = git@github.com:asd-xiv/probable-spoon-webapp.git
+[submodule "@asd14.m"]
+	path = @asd14.m
+	url = git@github.com:asd-xiv/m.git
