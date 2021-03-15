@@ -1,28 +1,25 @@
 # Probable Spoon
 
-> 8bit diagramms
+> 8bit diagrams
 
-<!-- vim-markdown-toc GFM -->
-
-* [Monorepo](#monorepo)
-* [Tools](#tools)
-* [Development](#development)
-* [Components](#components)
-  * [Specific](#specific)
-  * [Reusable](#reusable)
-* [Other](#other)
-* [Random tips](#random-tips)
-* [Changelog](#changelog)
-
-<!-- vim-markdown-toc -->
-
-## Monorepo 
-
-Treating the application as the sum of it's parts/components. Components can be app _specific_ or _reusable_, focusing on the latter.
+Monorepo with all application components, _specific_ or _reusable_, split into separe repositories/packages.
 
 * :godmode: Encourages "package composition" based development.
 * :rocket: A "high-order" repository with CI level responsibilities. Individual repositories changes should not not trigger CI deployments.
 * :recycle: A good monorepo is a removeable monorepo. The removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
+
+<!-- vim-markdown-toc GFM -->
+
+* [Tools](#tools)
+* [Development](#development)
+  * [Git related](#git-related)
+* [Components](#components)
+  * [Specific](#specific)
+  * [Reusable](#reusable)
+* [Random tips](#random-tips)
+* [Changelog](#changelog)
+
+<!-- vim-markdown-toc -->
 
 ## Tools
 
@@ -51,23 +48,7 @@ npm run start
 npm run build:deps:watch
 ```
 
-
-## Components
-
-### Specific
-
-* [ui] [main.webapp](https://github.com/asd-xiv/probable-spoon.webapp): [UI] React frontend
-* [api] [main.api-auth](https://github.com/asd-xiv/probable-spoon.api-auth): [API] Authentication & Authorization
-* [api] [main.api-diagrams](https://github.com/asd-xiv/probable-spoon.api-diagrams): [API] Diagrams and Models
-
-### Reusable
-
-* [core] [@asd14/eslint-config](https://github.com/asd-xiv/eslint-config): ESLint rules
-* [core] [@asd14/m](https://github.com/asd-xiv/m): Point free style, functional Javascript library
-* [ui] [@asd14/react-hooks](https://github.com/asd-xiv/react-hooks): Custom reusable React Hooks
-* [ui] [@asd14/gruvbox-ui](https://github.com/asd-xiv/gruvbox-ui): Gruvbox React UI components
-
-## Other
+### Git related 
 
 * Add submodule
 
@@ -87,6 +68,21 @@ rm -rf .git/modules/path/to/submodule
 # Remove entry in .gitmodules and remove submodule folder
 git rm -f a/submodule
 ```
+
+## Components
+
+### Specific
+
+* [ui] [main.webapp](https://github.com/asd-xiv/probable-spoon.webapp): React frontend
+* [api] [main.api-auth](https://github.com/asd-xiv/probable-spoon.api-auth): Authentication & Authorization
+* [api] [main.api-diagrams](https://github.com/asd-xiv/probable-spoon.api-diagrams): Diagrams and Models
+
+### Reusable
+
+* [core] [@asd14/eslint-config](https://github.com/asd-xiv/eslint-config): ESLint rules
+* [core] [@asd14/m](https://github.com/asd-xiv/m): Point free style, functional Javascript library
+* [ui] [@asd14/react-hooks](https://github.com/asd-xiv/react-hooks): Custom reusable React Hooks
+* [ui] [@asd14/gruvbox-ui](https://github.com/asd-xiv/gruvbox-ui): Gruvbox React UI components
  
 ## Random tips
 
