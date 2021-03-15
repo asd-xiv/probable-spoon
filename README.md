@@ -8,6 +8,8 @@ Monorepo with all application components, _specific_ or _reusable_, split into s
 * :rocket: A "high-order" repository with CI level responsibilities. Individual repositories changes should not not trigger CI deployments.
 * :recycle: A good monorepo is a removeable monorepo. The removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
 
+## Table of contents
+
 <!-- vim-markdown-toc GFM -->
 
 * [Tools](#tools)
