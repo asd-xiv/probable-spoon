@@ -1,7 +1,7 @@
 {
   "name": "@asd14/probable-spoon",
   "version": "0.0.1",
-  "description": "8bit diagramming tool",
+  "description": "8bit diagramms",
   "license": "BSD-3-Clause",
   "homepage": "https://github.com/asd-xiv/probable-spoon.mono#readme",
   "repository": {
@@ -17,10 +17,8 @@
   },
   "private": true,
   "scripts": {
-    "build:deps": "npm run setup && lerna run --scope '@asd14/*' --parallel build",
+    "----DEV": "",
     "build:deps:watch": "lerna bootstrap && lerna run --scope '@asd14/*' --parallel build:watch",
-    "build:webapp": "npm run build:deps && lerna run --scope 'probable-spoon-webapp' build",
-    "build:api-auth": "npm run build:deps && lerna run --scope 'probable-spoon-api-auth' build",
     "start": "lerna bootstrap && cd ./main.webapp && npm run start"
   },
   "devDependencies": {
