@@ -28,27 +28,25 @@ Monorepo gluing all application parts, _specific_ or _reusable_, each in it's ow
 
 ## Development
 
-1. Clone repo with all submodules
+* Clone repo with all submodules
 
 ```bash
 git clone --recurse-submodules git@github.com:asd-xiv/probable-spoon.mono.git
 ```
 
-2. Link all submodules/packages defined in `lerna.json` and start Webpack dev server
+* Link all submodules/packages defined in `lerna.json` and start Webpack dev server
 
 ```bash
 # "start": "lerna bootstrap && cd ./main.webapp && npm run start"
 npm run start
 ```
 
-3. Build and watch all submodules
+* Build and watch all submodules
 
 ```bash
 # "build:deps:watch": "lerna bootstrap && lerna run --scope '@asd14/*' --parallel build:watch",
 npm run build:deps:watch
 ```
-
----
 
 * Add git submodule
 
