@@ -2,12 +2,12 @@
 
 > 8bit diagrams
 
-Monorepo gluing all application parts, _specific_ or _reusable_, each in it's own repository, imported using Git modules.
+Monorepo gluing all application parts, _specific_ or _reusable_, each in it's own repository, imported with Git Submodules.
 
-* :godmode: Composition - Encourage package based development. The application is the sum of it's parts.
-* :rocket: High-order CI - Entry point for production deployment. Component changes should trigger production deployments.
-* :lock: Private - Lerna links all packages, indifferent of published or repository visibility status.
-* :recycle: Disposable - Monorepo removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
+* :godmode: Composition: Encourage package based development. The application is the sum of it's parts.
+* :rocket: High-order CI: Entry point for production deployment. Individual package changes should only trigger development env deployments.
+* :lock: Private: Lerna links all packages locally, indifferent of published or repository visibility state.
+* :recycle: Disposable: Monorepo removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
 
 ## Table of contents
 
@@ -15,10 +15,7 @@ Monorepo gluing all application parts, _specific_ or _reusable_, each in it's ow
 
 * [Tools](#tools)
 * [Development](#development)
-  * [Git related](#git-related)
 * [Components](#components)
-  * [Specific](#specific)
-  * [Reusable](#reusable)
 * [Random tips](#random-tips)
 * [Changelog](#changelog)
 
@@ -26,8 +23,8 @@ Monorepo gluing all application parts, _specific_ or _reusable_, each in it's ow
 
 ## Tools
 
-* :dragon: [Lerna](https://github.com/lerna/lerna): run scripts across multiple repositories and automatic package linking for fast local development.
-* :octopus: [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules): allow each component it's own code, scripts, issues, history etc. Can easily move thought commits and deploy custom version.
+* :dragon: [Lerna](https://github.com/lerna/lerna): Run scripts across multiple packages and automatic linking for fast local development.
+* :octopus: [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules): Allow each component it's own code, scripts, issues, history etc. Can easily point to different commits and (re)deploy.
 
 ## Development
 
@@ -51,15 +48,15 @@ npm run start
 npm run build:deps:watch
 ```
 
-### Git related 
+---
 
-* Add submodule
+* Add git submodule
 
 ```bash
 git submodule add <remote_url> <destination_folder>
 ```
 
-* Remove repo
+* Remove git submodule 
 
 ```bash
 # Remove submodule entry from .git/config
@@ -74,13 +71,13 @@ git rm -f a/submodule
 
 ## Components
 
-### Specific
+**Specific:**
 
 * [ui] [main.webapp](https://github.com/asd-xiv/probable-spoon.webapp): React frontend
 * [api] [main.api-auth](https://github.com/asd-xiv/probable-spoon.api-auth): Authentication & Authorization
 * [api] [main.api-diagrams](https://github.com/asd-xiv/probable-spoon.api-diagrams): Diagrams and Models
 
-### Reusable
+**Reusable:**
 
 * [core] [@asd14/eslint-config](https://github.com/asd-xiv/eslint-config): ESLint rules
 * [core] [@asd14/m](https://github.com/asd-xiv/m): Point free style, functional Javascript library
