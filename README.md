@@ -2,11 +2,12 @@
 
 > 8bit diagrams
 
-Monorepo with all application components, _specific_ or _reusable_, split into separe repositories/packages.
+Monorepo gluing all application parts, _specific_ or _reusable_, each in it's own repository, imported using Git modules.
 
-* :godmode: Encourages "package composition" based development.
-* :rocket: A "high-order" repository with CI level responsibilities. Individual repositories changes should not not trigger CI deployments.
-* :recycle: A good monorepo is a removeable monorepo. The removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
+* :godmode: Composition - Encourage package based development. The application is the sum of it's parts.
+* :rocket: High-order CI - Entry point for production deployment. Component changes should trigger production deployments.
+* :lock: Private - Lerna links all packages, indifferent of published or repository visibility status.
+* :recycle: Disposable - Monorepo removal should not bring structural changes to the application. It only automates maintenance tasks, like "npm link" calls, and keeps the packages glued.
 
 ## Table of contents
 
@@ -62,7 +63,7 @@ git submodule add <remote_url> <destination_folder>
 
 ```bash
 # Remove submodule entry from .git/config
-git submodule deinit -f -- path/to'submodule
+git submodule deinit -f -- path/to/submodule
 
 # Remove the submodule folder from main project's .git/modules
 rm -rf .git/modules/path/to/submodule
@@ -90,10 +91,10 @@ git rm -f a/submodule
 
 * [Naming conventions that work](https://github.com/kettanaito/naming-cheatsheet)
 * [Hierarchical Model-View-Controller](https://en.wikipedia.org/wiki/Hierarchical_model%E2%80%93view%E2%80%93controller)
-* Better repeat yourself than a wrong abstraction
-* Don't fix imaginary future problem
-* Extract code in libraries and test 100%
-* Dont't mock, E2E test
+* Better repeat yourself than a wrong abstraction.
+* Don't fix imaginary future problem.
+* Extract code in libraries and [unit test](https://github.com/ericelliott/riteway). `App` = `library1` + `library2` + `component1` + ... + `componentN`
+* Mocking takes time to setup and keep in sync. Don't mock, [E2E](https://devexpress.github.io/testcafe/) [test](https://nightwatchjs.org/).
 
 ## Changelog
 
