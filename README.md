@@ -26,8 +26,8 @@ Monorepo gluing all application parts, _specific_ or _reusable_, each in it's ow
 
 ## Tools
 
-* [Lerna](https://github.com/lerna/lerna): run scripts across multiple repositories and automatic package linking for fast local development.
-* [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules): allow each component it's own code, scripts, issues, history etc. Can easily move thought commits and deploy custom version.
+* :dragon: [Lerna](https://github.com/lerna/lerna): run scripts across multiple repositories and automatic package linking for fast local development.
+* :octopus: [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules): allow each component it's own code, scripts, issues, history etc. Can easily move thought commits and deploy custom version.
 
 ## Development
 
